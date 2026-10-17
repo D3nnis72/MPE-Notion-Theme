@@ -23,6 +23,8 @@ Weil `install.sh` Symlinks setzt, landen Änderungen über `Markdown Preview Enh
 
 ## Änderungen testen
 
+Die Preview überschreibt standardmäßig `margin` mit `0`. Eine gezielte Regel für den Preview-Container hält die Spalte trotzdem mittig. Der Hintergrund neben der Spalte folgt dem hellen oder dunklen Theme.
+
 - Änderungen an `style.less`: Vorschau neu laden.
 - Änderungen an `config.js` (Mermaid-Optionen): Window neu laden, sonst greifen sie nicht.
 

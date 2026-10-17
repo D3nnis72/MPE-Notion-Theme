@@ -143,6 +143,17 @@
   }
 }
 
+/* MPE setzt im Preview margin: 0 mit höherer Spezifität.
+   Nur die horizontale Ausrichtung überschreiben, die Lesebreite bleibt gleich. */
+body.preview-container .markdown-preview.markdown-preview[data-for="preview"] {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Gleicher Hintergrund auch neben der begrenzten Seitenspalte. */
+body.preview-container { background: #ffffff; }
+body.preview-container.vscode-dark { background: #191919; }
+
 /* Dunkles Theme (wenn VS Code dunkel ist) */
 body.vscode-dark .markdown-preview.markdown-preview {
   --text: rgba(255, 255, 255, 0.81);
