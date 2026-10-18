@@ -184,6 +184,17 @@ body.vscode-dark .markdown-preview.markdown-preview {
   --m-line: rgba(55, 53, 47, 0.45);
   --m-text: #37352f;
   --m-bg: #ffffff;
+  --m-warn-fill: #fdf3dc;
+  --m-warn-stroke: #d9a441;
+  --m-ok-fill: #e7f4ec;
+  --m-ok-stroke: #4caf78;
+  --m-bad-fill: #fbe9e7;
+  --m-bad-stroke: #e5645a;
+  --m-code-fill: #eaf2ff;   --m-code-stroke: #5b8bd6;
+  --m-llm-fill: #fdf1e3;    --m-llm-stroke: #d69a4a;
+  --m-human-fill: #e9f6ec;  --m-human-stroke: #4f9d62;
+  --m-gate-fill: #f1eefb;   --m-gate-stroke: #8a7bc2;
+  --m-store-fill: #f1f1ef;  --m-store-stroke: #8a8a8a;
 }
 body.vscode-dark .markdown-preview.markdown-preview .mermaid {
   --m-node: #0d0d0d;
@@ -193,6 +204,17 @@ body.vscode-dark .markdown-preview.markdown-preview .mermaid {
   --m-line: rgba(255, 255, 255, 0.35);
   --m-text: rgba(255, 255, 255, 0.81);
   --m-bg: #191919;
+  --m-warn-fill: #2c2412;
+  --m-warn-stroke: #b8863a;
+  --m-ok-fill: #12261b;
+  --m-ok-stroke: #3f9a68;
+  --m-bad-fill: #2d1a18;
+  --m-bad-stroke: #c9544b;
+  --m-code-fill: #101b33;   --m-code-stroke: #4a78c2;
+  --m-llm-fill: #2a1d0c;    --m-llm-stroke: #b8863a;
+  --m-human-fill: #12261b;  --m-human-stroke: #3f9a68;
+  --m-gate-fill: #1f1a33;   --m-gate-stroke: #7f70b8;
+  --m-store-fill: #262626;  --m-store-stroke: #8a8a8a;
 }
 .markdown-preview.markdown-preview .mermaid {
   text-align: center;
@@ -219,6 +241,28 @@ body.vscode-dark .markdown-preview.markdown-preview .mermaid {
     stroke: #3b82f6 !important;
     stroke-width: 2px !important;
   }
+  /* Status-Klassen (:::warn gelb, :::ok grün, :::bad rot) */
+  .node.warn rect, .node.warn polygon, .node.warn path {
+    fill: var(--m-warn-fill) !important;
+    stroke: var(--m-warn-stroke) !important;
+    stroke-width: 2px !important;
+  }
+  .node.ok rect, .node.ok polygon, .node.ok path {
+    fill: var(--m-ok-fill) !important;
+    stroke: var(--m-ok-stroke) !important;
+    stroke-width: 2px !important;
+  }
+  .node.bad rect, .node.bad polygon, .node.bad path {
+    fill: var(--m-bad-fill) !important;
+    stroke: var(--m-bad-stroke) !important;
+    stroke-width: 2px !important;
+  }
+  /* Knotenarten (:::code, :::llm, :::human, :::gate, :::store), Details im Skill mermaid-theme */
+  .node.code rect, .node.code polygon, .node.code path { fill: var(--m-code-fill) !important; stroke: var(--m-code-stroke) !important; stroke-width: 2px !important; }
+  .node.llm rect, .node.llm polygon, .node.llm path { fill: var(--m-llm-fill) !important; stroke: var(--m-llm-stroke) !important; stroke-width: 2px !important; }
+  .node.human rect, .node.human polygon, .node.human path { fill: var(--m-human-fill) !important; stroke: var(--m-human-stroke) !important; stroke-width: 2px !important; }
+  .node.gate rect, .node.gate polygon, .node.gate path { fill: var(--m-gate-fill) !important; stroke: var(--m-gate-stroke) !important; stroke-width: 2px !important; }
+  .node.store rect, .node.store polygon, .node.store path, .node.store ellipse { fill: var(--m-store-fill) !important; stroke: var(--m-store-stroke) !important; stroke-width: 2px !important; }
   /* Start und Ende als gefüllter Punkt */
   .node.dot circle { fill: var(--m-line) !important; stroke: var(--m-line) !important; }
   .nodeLabel b, .nodeLabel strong { font-weight: 600; }
@@ -266,6 +310,33 @@ body.vscode-dark .markdown-preview.markdown-preview .mermaid {
     fill: var(--m-text) !important;
   }
   .edgeLabel text { fill: var(--m-text) !important; background: none !important; }
+
+  /* Sequenzdiagramme: Akteure, Notizen, Rahmen wie die Flowchart-Boxen */
+  rect.actor, .actor rect {
+    fill: var(--m-node) !important;
+    stroke: var(--m-stroke) !important;
+    stroke-width: 1.5px !important;
+    rx: 12px; ry: 12px;
+  }
+  text.actor, text.actor > tspan, .actor text { fill: var(--m-text) !important; stroke: none !important; }
+  line.actor-line, .actor-line { stroke: var(--m-stroke) !important; }
+  .messageText, text.messageText, .sequenceNumber, .loopText, .loopText > tspan, .labelText, .labelText > tspan,
+  .noteText, .noteText > tspan, text.noteText {
+    fill: var(--m-text) !important; stroke: none !important;
+  }
+  rect.note {
+    fill: var(--m-warn-fill) !important;
+    stroke: var(--m-warn-stroke) !important;
+    stroke-width: 1.5px !important;
+    rx: 8px; ry: 8px;
+  }
+  rect.labelBox, polygon.labelBox {
+    fill: var(--m-cluster) !important;
+    stroke: var(--m-stroke) !important;
+  }
+  svg[aria-roledescription="sequence"] text { fill: var(--m-text) !important; stroke: none !important; }
+  .loopLine { stroke: var(--m-stroke) !important; stroke-width: 1.5px !important; }
+  .activation0, .activation1, .activation2 { fill: var(--m-cluster) !important; stroke: var(--m-stroke) !important; }
 
   /* Linien und Pfeile */
   .flowchart-link, .edgePath path, path.path, .messageLine0, .messageLine1 {

@@ -8,6 +8,7 @@ Notion-Look für die **Markdown Preview Enhanced** Vorschau in VS Code, inklusiv
 | --- | --- |
 | `style.less` | Das Theme: zentrierte Spalte (max. 900px), Notion-Typografie, Code, Tabellen, Zitate, Hell und Dunkel (folgt VS Code) und das Styling aller Mermaid-Diagramme |
 | `config.js` | Crossnote-Config mit der Mermaid-Konfiguration: klassischer Look, Schrift, Abstände, gerade Linien |
+| `skills/mermaid-theme` | Agent-Skill: Diagramme nutzen nur die Theme-Klassen und definieren keine Farben |
 | `install.sh` | Verlinkt beide Dateien in `~/.local/state/crossnote/` (Backup der alten Dateien als `.bak`) |
 
 ## Einrichten auf einem neuen Gerät
@@ -42,6 +43,10 @@ flowchart LR
 
 - `:::accent`: blau hervorgehobene Box
 - `:::dot`: gefüllter Punkt, zum Beispiel für Start und Ende
+- `:::ok`, `:::warn`, `:::bad`: grün, gelb, rot für Status
+- `:::code`, `:::llm`, `:::human`, `:::gate`, `:::store`: Knotenarten (Code, Modell, Mensch, Entscheidung, Ablage), jeweils mit hellem und dunklem Farbpaar
+
+Das Theme erzwingt Füllung, Rand und Textfarbe mit `!important`. Ein `classDef`, `style` oder `color:` im Diagramm hilft deshalb nicht. Diagramme weisen nur Klassen zu. Für Agents liegt die Regel im Skill `skills/mermaid-theme`; zum Installieren `ln -s <repo>/skills/mermaid-theme ~/.agents/skills/mermaid-theme`.
 
 Boxen mit Titel und Beschreibung schreibt man als `["<b>Titel</b><br/>Beschreibung"]`.
 
